@@ -24,7 +24,7 @@ func main() {
         return root.Children()[i].Data() > root.Children()[j].Data()
     })
 
-    root.Children() // Returns [2, 1]
+    root.ChildrenData() // Returns [2, 1]
 
     f := func(t *tree.Tree[int]) bool {
         return t.Data() % 2 == 0
