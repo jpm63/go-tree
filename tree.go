@@ -106,6 +106,10 @@ func (t *Tree[T]) Data() T {
 	return t.data
 }
 
+func (t *Tree[T]) ReplaceData(data T) {
+	t.data = data
+}
+
 // ParentData returns the data contained in the parent of t.
 func (t *Tree[T]) ParentData() T {
 	if t.parent == nil {
@@ -120,7 +124,7 @@ func (t *Tree[T]) ChildrenData() []T {
 	return dataSlice(t.children)
 }
 
-// ChildDatan returns the data contained in the
+// ChildData returns the data contained in the
 // child specified by selector.
 func (t *Tree[T]) ChildData(selector func(tree *Tree[T]) bool) T {
 	c := t.Child(selector)
