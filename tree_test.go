@@ -201,6 +201,28 @@ func TestData(t *testing.T) {
 	}
 }
 
+func TestReplaceData(t *testing.T) {
+	tests := []struct {
+		want any
+		init any
+	}{
+		{5, 0},
+		{"asdf", "fdsa"},
+		{[]int{1, 2, 3}, []int{0}},
+		{[]int{1, 2, 3}, nil},
+		{struct{ s string }{"asdf"}, struct{ s string }{"fdsa"}},
+	}
+	for _, tt := range tests {
+		root := tree.New(tt.init)
+		root.ReplaceData(tt.want)
+		got := root.Data()
+
+		if !reflect.DeepEqual(got, tt.want) {
+			t.Errorf("got: %v, want: %v", got, tt.want)
+		}
+	}
+}
+
 func TestParentData(t *testing.T) {
 	t.Run("parent", func(t *testing.T) {
 		want := 5
